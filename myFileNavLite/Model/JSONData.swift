@@ -7,3 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
+struct JSONData:  Decodable, Hashable {
+    let url: String
+}

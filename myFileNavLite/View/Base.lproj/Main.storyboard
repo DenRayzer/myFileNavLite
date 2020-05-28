@@ -11,28 +11,29 @@
         <!--Download-->
         <scene sceneID="WLs-HC-FrH">
             <objects>
-                <viewController id="pbz-Of-Ug1" customClass="DownloadController" customModule="myFileNavLight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pbz-Of-Ug1" customClass="DownloadController" customModule="myFileNavLite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rgz-R7-4fV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qci-Rs-AH8">
-                                <rect key="frame" x="10" y="88" width="394" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="685"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="8" minimumInteritemSpacing="0.0" id="Dc3-PP-DN8">
-                                    <size key="itemSize" width="128" height="128"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="Dc3-PP-DN8">
+                                    <size key="itemSize" width="391" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4Nf-Ii-9II">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DownloadCell_" id="4Nf-Ii-9II" customClass="DownloadCell_" customModule="myFileNavLite" customModuleProvider="target">
+                                        <rect key="frame" x="11.5" y="0.0" width="391" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="o43-iW-Jkw">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="391" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
+                                        </view>
+                                        <size key="customSize" width="391" height="128"/>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -40,13 +41,23 @@
                                     <outlet property="delegate" destination="pbz-Of-Ug1" id="fm4-gv-1vr"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ac3-eh-kgN">
+                                <rect key="frame" x="152" y="775" width="110" height="30"/>
+                                <state key="normal" title="Download all"/>
+                                <connections>
+                                    <action selector="downloadAll:" destination="pbz-Of-Ug1" eventType="touchUpInside" id="QXY-Vo-zRP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="qci-Rs-AH8" secondAttribute="trailing" constant="10" id="8W6-Zj-Qc5"/>
-                            <constraint firstItem="qci-Rs-AH8" firstAttribute="leading" secondItem="Jud-wS-wb4" secondAttribute="leading" constant="10" id="DNC-fB-PDA"/>
+                            <constraint firstItem="ac3-eh-kgN" firstAttribute="top" secondItem="qci-Rs-AH8" secondAttribute="bottom" constant="2" id="Eog-gR-jdm"/>
+                            <constraint firstItem="Jud-wS-wb4" firstAttribute="trailing" secondItem="qci-Rs-AH8" secondAttribute="trailing" id="H57-dN-8Om"/>
+                            <constraint firstItem="qci-Rs-AH8" firstAttribute="leading" secondItem="Jud-wS-wb4" secondAttribute="leading" id="HCZ-c1-OeT"/>
+                            <constraint firstItem="Jud-wS-wb4" firstAttribute="bottom" secondItem="ac3-eh-kgN" secondAttribute="bottom" constant="8" id="WmA-TT-VG3"/>
                             <constraint firstItem="qci-Rs-AH8" firstAttribute="top" secondItem="Jud-wS-wb4" secondAttribute="top" constant="44" id="bBY-yj-Rgf"/>
-                            <constraint firstItem="Jud-wS-wb4" firstAttribute="bottom" secondItem="qci-Rs-AH8" secondAttribute="bottom" id="xqE-wo-nNa"/>
+                            <constraint firstItem="ac3-eh-kgN" firstAttribute="leading" secondItem="Jud-wS-wb4" secondAttribute="leading" constant="152" id="sFM-1N-2ik"/>
+                            <constraint firstItem="Jud-wS-wb4" firstAttribute="trailing" secondItem="ac3-eh-kgN" secondAttribute="trailing" constant="152" id="yI2-Ct-C2l"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jud-wS-wb4"/>
                     </view>
@@ -62,7 +73,7 @@
         <!--Documents-->
         <scene sceneID="Kpf-or-ljw">
             <objects>
-                <viewController id="Bcn-Mt-GDD" customClass="DocsController" customModule="myFileNavLight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Bcn-Mt-GDD" customClass="DocsController" customModule="myFileNavLite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Vm-91-efz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -71,19 +82,20 @@
                                 <rect key="frame" x="10" y="88" width="394" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jRF-IH-AWe">
-                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="itemSize" width="392" height="110"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DocsCell" id="Frv-3N-WhH">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="1" y="0.0" width="392" height="110"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="8rZ-00-hUK">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="392" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="392" height="110"/>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -108,12 +120,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GNA-70-qdd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1813" y="-206"/>
+            <point key="canvasLocation" x="1811.594202898551" y="-206.25"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="wex-ny-hBe">
             <objects>
-                <tabBarController id="8Iu-6A-eBW" customClass="TabBarController" customModule="myFileNavLight" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="8Iu-6A-eBW" customClass="TabBarController" customModule="myFileNavLite" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nR3-qR-HpL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

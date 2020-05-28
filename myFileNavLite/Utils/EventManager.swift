@@ -10,14 +10,14 @@ import Foundation
 
 class EventManager {
     
-let listener: DownloadObserver
-   
-   init(_ listener: DownloadObserver) {
-       self.listener = listener
-   }
-   
-    func notifyDownloadFinished(data: Data) {
+    let listener: DownloadObserver
+    
+    init(_ listener: DownloadObserver) {
+        self.listener = listener
+    }
+    
+    func notifyDownloadFinished(data: Document) {
         listener.setNewItem(data: data)
-   }
-
+    }
+    
 }

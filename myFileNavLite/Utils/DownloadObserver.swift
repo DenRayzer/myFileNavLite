@@ -9,5 +9,5 @@
 import Foundation
 
 protocol DownloadObserver {
-    func setNewItem(data: Data)
+    func setNewItem(data: Document)
 }

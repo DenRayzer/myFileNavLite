@@ -13,17 +13,11 @@ class DocsCell: UICollectionViewCell {
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var sizeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         layer.cornerRadius = 8
-        layer.shadowOpacity = 0.2
-        layer.shadowOffset = CGSize(width: 0, height: 2)
-        layer.shadowRadius = 4
-        layer.shadowColor = UIColor.black.cgColor
-        layer.masksToBounds = false
-        // Initialization code
     }
     
 }

@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct DocModel {
-    <#fields#>
+struct Document {
+    let docUrl: URL
+    let docName: String
+    let docSize: Int
 }
-
-

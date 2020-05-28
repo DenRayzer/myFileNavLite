@@ -11,25 +11,24 @@ import QuickLook
 
 class DocsController: UIViewController, DownloadObserver {
     
-    
-    var docs: [Data] = []
-    
+    var docs: [Document] = []
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         collectionView.register(UINib(nibName: DocsCell.reuseId, bundle: nil), forCellWithReuseIdentifier: DocsCell.reuseId)
     }
     
-    func setNewItem(data: Data) {
+    func setNewItem(data: Document) {
         docs.append(data)
-        print("\(docs.count) in docs")
+        collectionView.reloadData()
     }
 }
 
-extension DocsController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+// MARK: -  UICollectionViewDelegate, UICollectionViewDataSource
+
+extension DocsController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return  1
@@ -39,42 +38,37 @@ extension DocsController: UICollectionViewDelegate, UICollectionViewDataSource, 
         return docs.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width - 20, height: 116)
-    }
-    
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DocsCell.reuseId, for: indexPath) as! DocsCell
-        cell.label.text = "\(indexPath.item)"
+        cell.label.text = docs[indexPath.item].docName
+        
+        let bcf = ByteCountFormatter()
+        bcf.allowedUnits = [.useMB]
+        bcf.countStyle = .file
+        let string = bcf.string(fromByteCount: Int64(docs[indexPath.item].docSize))
+        
+        cell.sizeLabel.text = string
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-//        let data = NSData(contentsOf: docs[indexPath.item] as URL)
-//        print(data)
-//      //  var im: UIImage?
-//        if data != nil {
-//            let cell = collectionView.cellForItem(at: indexPath) as! DocsCell
-//            cell.image.image = UIImage(data: data! as Data)
-        //}
-        
-        
-    }
-    func downloadItem(url: URL) {
-        
-    }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let previewController = QLPreviewController()
+        previewController.dataSource = self
+        previewController.currentPreviewItemIndex = indexPath.item
+        self.present(previewController, animated: true, completion: nil)
+    }
     
 }
+
+// MARK: -  QLPreviewControllerDataSource
 
 extension DocsController: QLPreviewControllerDataSource {
-func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
-    return docs.count
-}
-
-func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-    let previewItem = docs[index]
-    return previewItem as QLPreviewItem
-}
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        return docs.count
+    }
+    
+    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        let previewItem = NSURL(fileURLWithPath: docs[index].docUrl.path)
+        return previewItem as QLPreviewItem
+    }
 }
